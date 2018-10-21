@@ -24,8 +24,8 @@ class Beagle extends Dog{
 	public void eat(){
 		System.out.println("Beagle eat");
 	}
-	public void bark(){
-		System.out.println("Beagle bark");
+	public void bark(String a){
+		System.out.println("Beagle bark "+ a);
 	}
 	public void beFriendly(){
 		System.out.println("Beagle is Friendly");
@@ -38,12 +38,17 @@ class CastTest{
 		Dog dAnimal;
 		System.out.println("Various Animal behaviours");
 		for(Animal aAnimal : a){
+		System.out.println("-----This is the Object of "+aAnimal.getClass());
 			aAnimal.eat();
 			if( aAnimal instanceof Dog){
 				dAnimal = (Dog) aAnimal;
 				dAnimal.bark();
+				if( dAnimal instanceof Beagle){
+					((Beagle) dAnimal).bark("String");
+				}
 				dAnimal.beFriendly();
 			}
+		System.out.println("-----");
 		}
 	}
 }
