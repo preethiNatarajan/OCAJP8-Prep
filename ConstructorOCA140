@@ -1,0 +1,31 @@
+class Clothing{
+	String C_type;
+	Clothing(String s){
+		this.C_type = s;
+		System.out.println("Clothing constructor");
+	}
+}
+
+class TShirt extends Clothing{
+	TShirt(){
+		this("hellow");
+		System.out.println("TShirt overloaded no-arg constructor ");
+	}
+	TShirt(String s){
+		super(s);
+		System.out.println("TShirt constructor ");
+	}
+	void Clothing(String s){
+		//this(s); It is a regular method so cannot call this
+		// having same name as class, regular method can exist and it won't behave as constructor. Look for return type
+		System.out.println("normal method, not overriding constructor");
+	}
+}
+
+class ConstTest{
+	public static void main(String[] args){
+	TShirt b = new TShirt("type");
+	System.out.println("type of clothing "+b.C_type);
+	b.Clothing("string");
+	}
+}
