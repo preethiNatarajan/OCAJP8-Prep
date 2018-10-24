@@ -24,8 +24,8 @@ class TShirt extends Clothing{
 
 class ConstTest{
 	public static void main(String[] args){
-	TShirt b = new TShirt("type");
+	TShirt b = new TShirt("some tshirt");
 	System.out.println("type of clothing "+b.C_type);
-	b.Clothing("string");
+	b.Clothing("some input");
 	}
 }
