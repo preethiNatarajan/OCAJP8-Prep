@@ -1,0 +1,69 @@
+interface Moveable {
+	void moveIt();
+	default void moveIntMethod(){
+		System.out.println("Interface Moveable - moveIntMethod method");
+	}
+	static void moveStaticInt(){
+		System.out.println("Interface Moveable - moveStaticInt method");
+	}
+	default void doStuff(){
+		System.out.println("Interface Moveable - doStuff method");
+	}
+}
+
+interface Spherical {
+	void doSphericalThing();
+	default void spericalIntMethod(){
+		System.out.println("Interface Spherical - spericalIntMethod method");
+	}
+	default void doStuff(){
+		System.out.println("Interface Spherical - doStuff method");
+	}
+}
+
+interface Bounceable extends Moveable, Spherical {
+	int bounce_var = 5;
+	void bounce();
+	void setBounceFactor( int bf);
+	default void doStuff(){
+		Moveable.super.doStuff();
+		Spherical.super.doStuff();
+		System.out.println("Interface Bounceable - doStuff method");
+	}
+}
+
+class Ball implements Bounceable {
+	public void bounce(){
+		System.out.println("Class Ball - bounce method");
+	}
+	public void setBounceFactor(int bf){
+		//Bounceable.super.bounce_var = bf;
+		System.out.println("Class Ball - setBounceFactor method");
+	}
+	public void doSphericalThing(){
+		System.out.println("Class Ball - doSphericalThing method");
+	}
+	public void moveIt(){
+		System.out.println("Class Ball - moveIt method");
+	}
+	public void doStuff(){
+		//Spherical.super.super.doStuff();
+		Bounceable.super.doStuff();
+		System.out.println("Class Ball - doStuff method");
+	}
+}
+
+class InheritanceTest{
+	public static void main(String[] args){
+	Ball b = new Ball();
+	b.bounce();
+	b.setBounceFactor(6);
+	b.doSphericalThing();
+	b.moveIt();
+	b.moveIntMethod();
+	b.spericalIntMethod();
+	Moveable.moveStaticInt();
+	System.out.println("Interface variable access "+ Bounceable.bounce_var);
+	b.doStuff();
+	}
+}
